@@ -1,0 +1,57 @@
+﻿@* Kenny Hedlund *@
+@* Chapter 10 - tic tac toe *@
+
+@model TicTacToe.Models.TicTacToeGame
+
+<div class="container text-center mt-5">
+<!-- Header Section -->
+<div class="header-box">
+    <h1>Tic Tac Toe</h1>
+</div>
+
+    <!-- Game Message -->
+    @if (Model.GameOver && !string.IsNullOrEmpty(Model.Winner))
+    {
+        <div class="winner-message">
+            <h2>@Model.Winner wins!</h2>
+        </div>
+    }
+    else if (Model.GameOver && string.IsNullOrEmpty(Model.Winner))
+    {
+        <div class="winner-message">
+            <h2>It's a tie!</h2>
+        </div>
+    }
+    else
+    {
+        <h2 class="my-3">@Model.Message</h2>
+    }
+
+
+<!-- Game Board -->
+<div class="container">
+    <div class="row">
+        @for (int i = 0; i < Model.Board.Length; i++)
+        {
+            <div class="col-4 p-2">
+                <form asp-action="PlayTurn" method="post">
+                    <input type="hidden" name="cell" value="@i" />
+                    <button type="submit" class="btn btn-lg btn-primary w-100"
+                            style="height: 100px; font-size: 2rem;"
+                    @if (Model.Board[i] != null)
+                    {
+                        <text>disabled</text>
+                    }>
+                        @Model.Board[i]
+                        </button>
+                </form>
+            </div>
+        }
+    </div>
+</div>
+
+    <!-- New Game Button -->
+    @if (Model.GameOver)
+{
+    <a asp-action="NewGame" class="btn btn-success mt-3">New Game</a>
+}

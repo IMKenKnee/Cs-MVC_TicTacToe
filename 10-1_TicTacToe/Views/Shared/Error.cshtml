@@ -1,0 +1,14 @@
+﻿@* Kenny Hedlund *@
+@* Chapter 10 - tic tac toe *@
+
+@model _10_1_TicTacToe.Models.ErrorViewModel
+
+<h1 class="text-danger">Error</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+@if (Model?.ShowRequestId == true)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
